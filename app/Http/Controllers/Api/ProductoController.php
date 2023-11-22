@@ -28,11 +28,16 @@ class ProductoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(StoreProductRequest $request)
+ {
+    $product = producto::create($request->all());
 
+    return response()->json([
+        'status' => true,
+        'message' => "Product Created successfully!",
+        'product' => $product
+    ], 200);
+ }
     /**
      * Display the specified resource.
      */
